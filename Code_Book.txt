@@ -1,0 +1,105 @@
+Input File - activity_labels.txt:
+	This file contains the activity name and activity id
+	There are six activities 
+		WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+	No header, 6 rows
+	Column 1: activity id
+	Column 2: activity name
+	
+Input File - features.txt
+	This file contains measurement column number and measurement name
+	No header, 561 rows, ie, 561 total measurement names
+	Column 1: measurement column number
+	Column 2: measurement name
+
+Input File - test/X_test.txt
+	This file contains the measurement values
+	No header, 561 columns (measurements),2947 rows (2947 combinations of subject, activity)
+	File line number: the logical row id for "test" dataset join
+	Column: each is a measurement value on the subject and the activity identified by the row id
+	
+Input File - test/Y_test.txt
+	This file contains activity id
+	No header, 2947 rows, 6 distinct values from 1 to 6
+	What each row means: activity id for the row id (line number)
+	
+Input File - test/subject_test.txt
+	This file contains subject (volunteer) id
+	No header, 2947 rows, 30 distinct values (30 volunteers) from 1 to 30
+	What each row means: the volunteer id for the row id
+
+Input File - train/X_train.txt
+	This file contains the measurement values
+	No header, 561 columns (measurements), 7352 rows ( 7352 combinations of subject, activity)
+	File line number: the logical row id for "train" data set join
+	Column: each is a measurement value on the subject and the activity identified by the row id
+
+Input File - train/Y_test.txt
+	This file contains activity id
+	No header, 7352 rows, 6 distinct values from 1 to 6
+	What each row means: activity id for the row id
+
+Input File - train/subject_test.txt
+	This file contains subject (volunteer) id
+	No header, 7352 rows, 30 distinct values (30 volunteers) from 1 to 30
+	What each row means: the volunteer id for the row id
+
+Meta - features_info.txt
+	About the original parameter naming
+
+The Program - run analysis.R
+	This is the R script I wrote, which does the following:
+	 - load the data in from local my drive
+	 - pick the required measurement columns only
+	 - merge datasets
+	 - rename some column names
+	 - average the measurement value by subject and activity
+	 - create the tidy data output file: FinalData.txt
+	 
+Output - FinalData.txt
+	This the output file produced by "run analysis.R"
+	Has header
+	All strings are double-quoted
+	No row id column
+	Blank separated
+	Total rows: 180 (= 30 x 6 )
+	Total columns: 88	
+	column 1: subject id, integer
+	column 2: activity, text
+	column 3 - 88: 	measurements. 
+			data type:		float. 
+			data unit: 		same as input. 
+			what's measured: 	see original file features_info.txt and the renaming in my R code. 
+	
+	All colument names:
+	 
+ [1] "SubjectID"                                       "Activity"                                        "TimeBodyAccelerometerMeanX"                     
+ [4] "TimeBodyAccelerometerMeanY"                      "TimeBodyAccelerometerMeanZ"                      "TimeGravityAccelerometerMeanX"                  
+ [7] "TimeGravityAccelerometerMeanY"                   "TimeGravityAccelerometerMeanZ"                   "TimeBodyAccelerometerJerkMeanX"                 
+[10] "TimeBodyAccelerometerJerkMeanY"                  "TimeBodyAccelerometerJerkMeanZ"                  "TimeBodyGyroscopeMeanX"                         
+[13] "TimeBodyGyroscopeMeanY"                          "TimeBodyGyroscopeMeanZ"                          "TimeBodyGyroscopeJerkMeanX"                     
+[16] "TimeBodyGyroscopeJerkMeanY"                      "TimeBodyGyroscopeJerkMeanZ"                      "TimeBodyAccelerometerMagnitudeMean"             
+[19] "TimeGravityAccelerometerMagnitudeMean"           "TimeBodyAccelerometerJerkMagnitudeMean"          "TimeBodyGyroscopeMagnitudeMean"                 
+[22] "TimeBodyGyroscopeJerkMagnitudeMean"              "FrequencyBodyAccelerometerMeanX"                 "FrequencyBodyAccelerometerMeanY"                
+[25] "FrequencyBodyAccelerometerMeanZ"                 "FrequencyBodyAccelerometerMeanFreqX"             "FrequencyBodyAccelerometerMeanFreqY"            
+[28] "FrequencyBodyAccelerometerMeanFreqZ"             "FrequencyBodyAccelerometerJerkMeanX"             "FrequencyBodyAccelerometerJerkMeanY"            
+[31] "FrequencyBodyAccelerometerJerkMeanZ"             "FrequencyBodyAccelerometerJerkMeanFreqX"         "FrequencyBodyAccelerometerJerkMeanFreqY"        
+[34] "FrequencyBodyAccelerometerJerkMeanFreqZ"         "FrequencyBodyGyroscopeMeanX"                     "FrequencyBodyGyroscopeMeanY"                    
+[37] "FrequencyBodyGyroscopeMeanZ"                     "FrequencyBodyGyroscopeMeanFreqX"                 "FrequencyBodyGyroscopeMeanFreqY"                
+[40] "FrequencyBodyGyroscopeMeanFreqZ"                 "FrequencyBodyAccelerometerMagnitudeMean"         "FrequencyBodyAccelerometerMagnitudeMeanFreq"    
+[43] "FrequencyBodyAccelerometerJerkMagnitudeMean"     "FrequencyBodyAccelerometerJerkMagnitudeMeanFreq" "FrequencyBodyGyroscopeMagnitudeMean"            
+[46] "FrequencyBodyGyroscopeMagnitudeMeanFreq"         "FrequencyBodyGyroscopeJerkMagnitudeMean"         "FrequencyBodyGyroscopeJerkMagnitudeMeanFreq"    
+[49] "AngleTimeBodyAccelerometerMeanGravity"           "AngleTimeBodyAccelerometerJerkMeanGravityMean"   "AngleTimeBodyGyroscopeMeanGravityMean"          
+[52] "AngleTimeBodyGyroscopeJerkMeanGravityMean"       "AngleXGravityMean"                               "AngleYGravityMean"                              
+[55] "AngleZGravityMean"                               "TimeBodyAccelerometerStdX"                       "TimeBodyAccelerometerStdY"                      
+[58] "TimeBodyAccelerometerStdZ"                       "TimeGravityAccelerometerStdX"                    "TimeGravityAccelerometerStdY"                   
+[61] "TimeGravityAccelerometerStdZ"                    "TimeBodyAccelerometerJerkStdX"                   "TimeBodyAccelerometerJerkStdY"                  
+[64] "TimeBodyAccelerometerJerkStdZ"                   "TimeBodyGyroscopeStdX"                           "TimeBodyGyroscopeStdY"                          
+[67] "TimeBodyGyroscopeStdZ"                           "TimeBodyGyroscopeJerkStdX"                       "TimeBodyGyroscopeJerkStdY"                      
+[70] "TimeBodyGyroscopeJerkStdZ"                       "TimeBodyAccelerometerMagnitudeStd"               "TimeGravityAccelerometerMagnitudeStd"           
+[73] "TimeBodyAccelerometerJerkMagnitudeStd"           "TimeBodyGyroscopeMagnitudeStd"                   "TimeBodyGyroscopeJerkMagnitudeStd"              
+[76] "FrequencyBodyAccelerometerStdX"                  "FrequencyBodyAccelerometerStdY"                  "FrequencyBodyAccelerometerStdZ"                 
+[79] "FrequencyBodyAccelerometerJerkStdX"              "FrequencyBodyAccelerometerJerkStdY"              "FrequencyBodyAccelerometerJerkStdZ"             
+[82] "FrequencyBodyGyroscopeStdX"                      "FrequencyBodyGyroscopeStdY"                      "FrequencyBodyGyroscopeStdZ"                     
+[85] "FrequencyBodyAccelerometerMagnitudeStd"          "FrequencyBodyAccelerometerJerkMagnitudeStd"      "FrequencyBodyGyroscopeMagnitudeStd"             
+[88] "FrequencyBodyGyroscopeJerkMagnitudeStd"
